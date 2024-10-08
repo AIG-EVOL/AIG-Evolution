@@ -1,7 +1,13 @@
 /* custom.css */
 @media (max-width: 768px) {
     .col-6, .col-12-small {
-        padding-left: 10px;!important;
-        padding-right: 10px;!important; /* Ajoute de la marge droite pour les petits écrans */
+        padding-left: 15px !important;
+        padding-right: 15px !important; /* Ajoute de la marge droite pour les petits écrans */
+    }
+}
+@media (max-width: 768px) {
+    .col-12 {
+        padding-left: 15px !important;
+        padding-right: 15px !important; /* Ajoute de l'espace à droite et à gauche */
     }
 }
