@@ -256,5 +256,25 @@
 						$window.triggerHandler('resize.sidebar-lock');
            });
 });
+(function($) {
+    // Gérer l'ouverture et la fermeture des sous-menus et sous-sous-menus
+    $('.opener').click(function(event) {
+        event.preventDefault(); // Empêche l'action par défaut
+        event.stopPropagation(); // Empêche la propagation de l'événement au parent
+
+        const submenu = $(this).next('ul'); // Sélectionner le sous-menu ou sous-sous-menu suivant
+
+        // Si un sous-menu existe
+        if (submenu.length) {
+            // Ferme tous les autres sous-sous-menus de même niveau
+            $(this).parent().siblings().find('ul').slideUp();
+            $(this).parent().siblings().find('.opener').removeClass('active');
+
+            // Toggle l'ouverture/fermeture du sous-sous-menu sur lequel on a cliqué
+            submenu.slideToggle(); // Ouvre/Ferme le sous-menu avec un effet de glissement
+            $(this).toggleClass('active'); // Alterner la classe 'active' pour l'icône
+        }
+    });
+})(jQuery);
 
 })(jQuery);
