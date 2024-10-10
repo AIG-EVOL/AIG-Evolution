@@ -255,6 +255,13 @@
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');
 
+					document.querySelectorAll('.opener').forEach(opener => {
+    opener.addEventListener('click', function() {
+        // Toggle le sous-menu suivant
+        const submenu = this.nextElementSibling;
+        if (submenu) {
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
            });
 });
 
