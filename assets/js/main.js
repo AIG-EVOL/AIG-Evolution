@@ -264,7 +264,29 @@ $menu_openers.each(function() {
 
         // Réinitialise la hauteur du sidebar si nécessaire
         $window.triggerHandler('resize.sidebar-lock');
-   
-        });
+   (function($) {
+    // Gérer l'ouverture et la fermeture des sous-menus et sous-sous-menus
+    $('.opener').click(function(event) {
+        event.preventDefault(); // Empêche l'action par défaut
+        event.stopPropagation(); // Empêche la propagation de l'événement
+
+        var $this = $(this);
+        var submenu = $this.next('ul'); // Sélectionne le sous-menu suivant
+
+        // Vérifie si c'est un sous-menu ou sous-sous-menu
+        if (submenu.length) {
+            // Si c'est un sous-sous-menu, n'affecte pas les autres Smenu ouverts
+            if ($this.closest('ul').parent().hasClass('opener')) {
+                // Ne ferme que les sous-sous-menus (SSmenu) dans le même sous-menu (Smenu)
+                $this.closest('li').siblings().find('ul').slideUp(); // Ferme les autres SSmenu du même niveau
+            } else {
+                // Ferme les autres sous-menus (Smenu) du même niveau
+                $this.closest('ul').find('.opener').not($this).removeClass('active').next('ul').slideUp();
+            }
+
+            // Toggle l'ouverture du sous-menu ou sous-sous-menu
+            submenu.slideToggle();
+            $this.toggleClass('active');
+        }
     });
 })(jQuery);
