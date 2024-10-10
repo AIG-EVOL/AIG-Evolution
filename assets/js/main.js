@@ -255,7 +255,6 @@
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');
      
-            }
         });
     });
 })(jQuery);
