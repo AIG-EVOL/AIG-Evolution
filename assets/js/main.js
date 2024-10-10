@@ -264,8 +264,7 @@ $menu_openers.each(function() {
 
         // Réinitialise la hauteur du sidebar si nécessaire
         $window.triggerHandler('resize.sidebar-lock');
-    });
-});
+   
         });
     });
 })(jQuery);
