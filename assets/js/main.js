@@ -235,26 +235,37 @@
 				});
 
 	// Menu.
-		var $menu = $('#menu'),
-			$menu_openers = $menu.children('ul').find('.opener');
+var $menu = $('#menu'),
+    $menu_openers = $menu.children('ul').find('.opener');
 
-		// Openers.
-			$menu_openers.each(function() {
+// Openers click event.
+$menu_openers.each(function() {
+    var $this = $(this);
 
-				var $this = $(this);
+    // Ajoute un événement de clic sur chaque "opener"
+    $this.on('click', function(event) {
+        event.preventDefault();
+        
+        // Ajoute ou retire la classe "active"
+        $this.toggleClass('active');
 
-				$this.on('click', function(event) {
+        // Trouve le sous-menu associé
+        var $submenu = $this.next('ul');
+        
+        // Ouvre/ferme le sous-menu correspondant
+        $submenu.slideToggle();
 
-					// Prevent default.
-						event.preventDefault();
+        // Ferme les autres sous-menus ouverts
+        $menu_openers.not($this).each(function() {
+            var $otherSubmenu = $(this).next('ul');
+            $(this).removeClass('active');
+            $otherSubmenu.slideUp();
+        });
 
-					// Toggle.
-						$menu_openers.not($this).removeClass('active');
-						$this.toggleClass('active');
-
-					// Trigger resize (sidebar lock).
-						$window.triggerHandler('resize.sidebar-lock');
-     
+        // Réinitialise la hauteur du sidebar si nécessaire
+        $window.triggerHandler('resize.sidebar-lock');
+    });
+});
         });
     });
 })(jQuery);
