@@ -264,8 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
                 this.classList.toggle('active');
             }
-        });
-    });
+           });
 });
 
 // Assure-toi que l'IIFE est bien fermée ici
