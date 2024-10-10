@@ -2193,6 +2193,14 @@ button,
     color: inherit; }
 
 /* Menu */
+
+/* Sous-sous-menus */
+#menu > ul > li > ul > li > ul{
+    display: none; /* Masque les sous-sous-menus par défaut */
+    /*margin-left: 1em; /* Optionnel : ajouter un peu d'espace à gauche pour les sous-sous-menus */
+
+
+
 #menu ul {
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -2263,10 +2271,7 @@ button,
     margin: 0.5em 0 1.5em 0;
     padding-left: 1em; }
   
-/* Sous-sous-menus */
-#menu > ul > li > ul > li > ul{
-    display: none; /* Masque les sous-sous-menus par défaut */
-    /*margin-left: 1em; /* Optionnel : ajouter un peu d'espace à gauche pour les sous-sous-menus */
+
 
 #menu > ul > li > ul a, #menu > ul > li > ul span {
       font-size: 0.8em; }
