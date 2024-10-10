@@ -265,8 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const submenu = this.nextElementSibling; // Sélectionne le sous-menu suivant
             if (submenu) {
                 // Toggle l'affichage du sous-menu
-                submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
-
+                if (submenu.style.display === 'block') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'block';
+                }
                 // Ajoute ou enlève la classe 'active' pour l'icône
                 this.classList.toggle('active');
 				});
