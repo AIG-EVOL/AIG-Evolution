@@ -256,25 +256,6 @@
 						$window.triggerHandler('resize.sidebar-lock');
            });
 });
-(function($) {
-    // Gérer l'ouverture et la fermeture des sous-menus
-    $('.opener').click(function(event) {
-        event.preventDefault(); // Empêche l'action par défaut
-        event.stopPropagation(); // Empêche la propagation de l'événement
 
-        const submenu = $(this).next('ul'); // Sélectionner le sous-menu adjacent
-
-        // Si un sous-menu existe
-        if (submenu.length) {
-            // Toggle l'ouverture/fermeture du sous-menu
-            submenu.slideToggle(); // Ouvre ou ferme le sous-menu avec un effet de glissement
-            $(this).toggleClass('active'); // Alterner la classe 'active' pour l'icône
-        }
-    });
-
-    // Masquer tous les sous-menus et sous-sous-menus au chargement de la page
-    $(document).ready(function() {
-        $('#menu ul ul').hide(); // Cache tous les sous-menus par défaut
-    });
 
 })(jQuery);
