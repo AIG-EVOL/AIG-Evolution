@@ -254,14 +254,19 @@
 
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');
-// Gérer l'ouverture et la fermeture des sous-sous-menus
+// Attendre que le DOM soit complètement chargé
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('#menu ul ul .opener').forEach(subOpener => {
-        subOpener.addEventListener('click', function(event) {
-            event.stopPropagation();
-            const subSubMenu = this.nextElementSibling;
-            if (subSubMenu) {
-                subSubMenu.style.display = (subSubMenu.style.display === 'block') ? 'none' : 'block';
+    // Gérer l'ouverture et la fermeture des sous-menus
+    document.querySelectorAll('.opener').forEach(opener => {
+        opener.addEventListener('click', function(event) {
+            event.stopPropagation(); // Empêche la propagation de l'événement au parent
+
+            // Vérifie si l'élément suivant est un sous-menu
+            const submenu = this.nextElementSibling;
+            if (submenu && submenu.tagName === 'UL') {
+                // Toggle l'affichage du sous-menu
+                submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
+                // Ajoute ou enlève la classe 'active' pour l'icône
                 this.classList.toggle('active');
             }
            });
