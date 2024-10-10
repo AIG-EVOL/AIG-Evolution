@@ -254,7 +254,7 @@
 
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');
-          (function($) {
+        (function($) {
     $(document).ready(function() {
         // Gérer les clics sur les éléments avec la classe 'opener'
         $('.opener').click(function(event) {
@@ -263,15 +263,11 @@
 
             const submenu = $(this).next('ul'); // Sélectionne le sous-menu suivant
 
-            // Si le sous-menu existe
+            // Si un sous-menu existe
             if (submenu.length) {
-                // Toggle l'affichage du sous-menu
+                // Ouvre/Ferme le sous-menu sans fermer le parent
                 submenu.slideToggle(); // Ouvre/Ferme le sous-sous-menu
                 $(this).toggleClass('active'); // Alterne la classe 'active' pour l'icône
-
-                // Ferme les autres sous-sous-menus du même niveau
-                $(this).parent().siblings().find('ul').slideUp();
-                $(this).parent().siblings().find('.opener').removeClass('active');
             }
         });
     });
