@@ -2195,7 +2195,7 @@ button,
 /* Menu */
 
 /* Sous-sous-menus */
-#menu > ul > li > ul > li > ul{
+/*#menu > ul > li > ul > li > ul{
     display: none; /* Masque les sous-sous-menus par défaut */
     /*margin-left: 1em; /* Optionnel : ajouter un peu d'espace à gauche pour les sous-sous-menus */
 
