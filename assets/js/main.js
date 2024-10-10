@@ -269,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Ajoute ou enlève la classe 'active' pour l'icône
                 this.classList.toggle('active');
             }
+	 });	
            });
 });
 
