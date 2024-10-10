@@ -208,14 +208,14 @@
             // Find associated submenu
             var $submenu = $this.next('ul');
             
-            // Open/close the corresponding submenu without animation
-            $submenu.toggle(); // Change here to toggle without animation
+            // Open/close the corresponding submenu
+            $submenu.slideToggle();
 
             // Close other open submenus
             $menu_openers.not($this).each(function() {
                 var $otherSubmenu = $(this).next('ul');
                 $(this).removeClass('active');
-                $otherSubmenu.hide(); // Change here to hide without animation
+                $otherSubmenu.slideUp();
             });
 
             // Reset sidebar height if necessary
@@ -236,14 +236,14 @@
             // If it's a sub-submenu, do not affect other submenus opened
             if ($this.closest('ul').parent().hasClass('opener')) {
                 // Only close other sub-submenus (SSmenu) in the same submenu (Smenu)
-                $this.closest('li').siblings().find('ul').hide(); // Change here to hide without animation
+                $this.closest('li').siblings().find('ul').slideUp(); // Close other SSmenu at the same level
             } else {
                 // Close other submenus (Smenu) at the same level
-                $this.closest('ul').find('.opener').not($this).removeClass('active').next('ul').hide(); // Change here to hide without animation
+                $this.closest('ul').find('.opener').not($this).removeClass('active').next('ul').slideUp();
             }
 
-            // Toggle opening of the submenu or sub-submenu without animation
-            submenu.toggle();
+            // Toggle opening of the submenu or sub-submenu
+            submenu.slideToggle();
             $this.toggleClass('active');
         }
     });
