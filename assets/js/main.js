@@ -254,20 +254,7 @@
 
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');
-        (function($) {
-    $(document).ready(function() {
-        // Gérer les clics sur les éléments avec la classe 'opener'
-        $('.opener').click(function(event) {
-            event.preventDefault(); // Empêche le comportement par défaut
-            event.stopPropagation(); // Empêche la propagation de l'événement au parent
-
-            const submenu = $(this).next('ul'); // Sélectionne le sous-menu suivant
-
-            // Si un sous-menu existe
-            if (submenu.length) {
-                // Ouvre/Ferme le sous-menu sans fermer le parent
-                submenu.slideToggle(); // Ouvre/Ferme le sous-sous-menu
-                $(this).toggleClass('active'); // Alterne la classe 'active' pour l'icône
+     
             }
         });
     });
