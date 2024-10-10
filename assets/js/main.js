@@ -256,19 +256,17 @@
 						$window.triggerHandler('resize.sidebar-lock');
 // Gérer l'ouverture et la fermeture des sous-sous-menus
 document.addEventListener('DOMContentLoaded', () => {
-    // Sélectionne tous les éléments ayant la classe 'opener'
     document.querySelectorAll('.opener').forEach(opener => {
-        // Ajoute un événement 'click' à chaque 'opener'
         opener.addEventListener('click', function(event) {
-            event.stopPropagation(); // Empêche la propagation de l'événement au parent
-
-            const submenu = this.nextElementSibling; // Sélectionne le sous-menu suivant
+            event.stopPropagation();
+            const submenu = this.nextElementSibling;
             if (submenu) {
-                // Toggle l'affichage du sous-menu
                 submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
-                // Ajoute ou enlève la classe 'active' pour l'icône
                 this.classList.toggle('active');
             }
         });
     });
 });
+
+// Assure-toi que l'IIFE est bien fermée ici
+})(jQuery);
