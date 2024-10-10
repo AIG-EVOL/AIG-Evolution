@@ -254,9 +254,7 @@
 
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');
-
            });
 });
 
-// Assure-toi que l'IIFE est bien fermée ici
 })(jQuery);
