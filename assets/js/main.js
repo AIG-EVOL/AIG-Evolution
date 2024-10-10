@@ -254,7 +254,16 @@
 
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');
-
+// Gérer l'ouverture et la fermeture des sous-sous-menus
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#menu ul ul .opener').forEach(subOpener => {
+        subOpener.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const subSubMenu = this.nextElementSibling;
+            if (subSubMenu) {
+                subSubMenu.style.display = (subSubMenu.style.display === 'block') ? 'none' : 'block';
+                this.classList.toggle('active');
+            }
            });
 });
 
