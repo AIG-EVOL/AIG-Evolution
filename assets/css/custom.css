@@ -6,7 +6,7 @@
     }
 }
 @media (max-width: 768px) {
-    .col-12 {
+    .col {
         padding-left: 15px !important;
         padding-right: 15px !important; /* Ajoute de l'espace à droite et à gauche */
     }
