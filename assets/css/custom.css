@@ -11,16 +11,6 @@
         padding-right: 13px !important; /* Ajoute de l'espace à droite et à gauche */
     }
 }
-/* S'assure que la vidéo est toujours centrée */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* Ratio 16:9 */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background-color: #000; /* Optionnel : ajoute un fond noir en attendant le chargement */
-}
-
 .video-container iframe {
     position: absolute;
     top: 0;
