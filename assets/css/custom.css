@@ -11,3 +11,25 @@
         padding-right: 13px !important; /* Ajoute de l'espace à droite et à gauche */
     }
 }
+.video-container {
+    position: relative;
+    width: 280px; /* Largeur réduite pour mobile */
+    height: 158px; /* Hauteur réduite pour mobile */
+    margin: 0 auto; /* Centre le lecteur horizontalement */
+    margin-bottom: 20px; /* Ajoute un espace de 20px sous le player */
+    overflow: hidden;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@media (min-width: 600px) {
+    .video-container {
+        width: 560px; /* Taille d'origine sur les écrans plus grands */
+        height: 315px;
+        margin-bottom: 40px; /* Augmente l'espacement sous le player pour les écrans larges */
+    }
+}
