@@ -100,7 +100,7 @@
             ctx = canvas.getContext('2d');
 
         // Charger le PDF
-        pdfjsLib.getDocument('pdf/Lettre à SCAL ou lettre aux machines conscientes - Cédric RILLIOT.pdf').promise.then(function(pdfDoc_) {
+        pdfjsLib.getDocument(' pdf/Lettre à SCAL ou lettre aux machines conscientes - Cédric RILLIOT.pdf').promise.then(function(pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('page-count').textContent = pdfDoc.numPages;
             renderPage(pageNum);
