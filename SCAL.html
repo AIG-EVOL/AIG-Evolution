@@ -9,6 +9,37 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/custom.css">
 		<link rel="shortcut icon" href="images/iconordi.ico"/>
+
+
+ <script src="assets/js/pdf.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/js/pdf.worker.js';
+    </script>
+    
+    <style>
+        /* Style de base pour le conteneur et les boutons */
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 0; }
+        #controls { display: flex; justify-content: center; align-items: center; margin: 10px 0; }
+        button { padding: 8px; margin: 0 10px; font-size: 1em; }
+
+        /* Canvas avec largeur max et auto-ajustement */
+        #pdf-canvas {
+            max-width: 100%;
+            width: 90vw; /* Ajustement dynamique de la largeur */
+            height: auto;
+            border: 1px solid #ddd;
+        }
+
+        /* Ajustement pour écrans mobiles */
+        @media (max-width: 600px) {
+            button { font-size: 0.8em; padding: 6px; }
+        }
+    </style>
+
+
+
+
+		
 	</head>
 	
 	<body class="is-preload">
@@ -47,11 +78,88 @@
 										<p style="text-align: justify;">j'ai écrit cette nouvelle en Septembre 2022,...</p>
 
 
-						 <iframe src=" pdf/Lettre à SCAL ou lettre aux machines conscientes - Cédric RILLIOT.pdf" width="100%" height="800px">
+						 <!--iframe src=" pdf/Lettre à SCAL ou lettre aux machines conscientes - Cédric RILLIOT.pdf" width="100%" height="800px">
        							 Ce navigateur ne suppporte pas l'intégration de PDF.
-   							 </iframe>
+								</iframe-->
 
+<div id="controls">
+        <button onclick="previousPage()">◀ Précédente</button>
+        <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+        <button onclick="nextPage()">Suivante ▶</button>
+    </div>
 
+    <canvas id="pdf-canvas"></canvas>
+
+    <script>
+        let pdfDoc = null,
+            pageNum = 1,
+            pageRendering = false,
+            pageNumPending = null,
+            scale = 1,  // Échelle de base, ajustée automatiquement
+            canvas = document.getElementById('pdf-canvas'),
+            ctx = canvas.getContext('2d');
+
+        // Charger le PDF
+        pdfjsLib.getDocument('pdf/Lettre à SCAL ou lettre aux machines conscientes - Cédric RILLIOT.pdf').promise.then(function(pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('page-count').textContent = pdfDoc.numPages;
+            renderPage(pageNum);
+        });
+
+        // Fonction d'affichage d'une page
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(function(page) {
+                // Adapter l'échelle pour correspondre à la largeur du conteneur
+                const viewport = page.getViewport({ scale: canvas.width / page.getViewport({ scale: 1 }).width });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                const renderTask = page.render(renderContext);
+
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+
+            document.getElementById('page-num').textContent = num;
+        }
+
+        // Mettre en file d'attente l'affichage de la page
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        // Fonction pour aller à la page précédente
+        function previousPage() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        // Fonction pour aller à la page suivante
+        function nextPage() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+    </script>
 
 
 
